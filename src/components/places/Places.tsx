@@ -1,29 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { placesMock } from "../../App";
 
 const Places = () => {
-  const places = [
-    {
-      id: 0,
-      location: "Prespa",
-      placeName: "Otesevo",
-      img: "photo",
-    },
-    {
-      id: 1,
-      location: "Prespa",
-      placeName: "Stenje",
-      img: "photo2",
-    },
-  ];
-
-  if (places) {
+  
+  if (placesMock) {
     return (
       <div>
         <div className="row">
           <div className="col-md-6">
             <h2>
-              <i className="fas fas-users"></i> ttttPlaces
+              <i className="fas fas-users"></i>
             </h2>
           </div>
           <div className="col-md-6"></div>
@@ -32,22 +19,26 @@ const Places = () => {
         <table className="table table-striped">
             <thead className="thead-inverse">
                 <tr>
-                    <th>location</th>
-                    <th>place name</th>
-                    <th>img</th>
+                    <th>Location</th>
+                    <th>Place Name</th>
+                    {/* <th>Photo</th> */}
+                    <th>User</th>
+                    <th>Date Created</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {places.map(place => (
+                {placesMock.map(place => (
                     <tr key={place.id}>
                         <td>{place.location}</td>
                         <td>{place.placeName}</td>
-                        <td>{place.img}</td>
+                        {/* <td >{place.img}</td> */}
+                        <td>{place.username}</td>
+                        <td>{place.date}</td>
                         <td>
                             <Link to={`/places/${place.id}`}
                             className='btn btn-secondary btn-sm'>
-                                <i className="fas fa-arrow-circle-right"></i>Details
+                                <i className="fas fa-arrow-circle-right"></i>Edit
                             </Link>
                         </td>
                     </tr>
