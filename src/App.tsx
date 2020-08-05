@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HeaderBar from "./components/layouts/HeaderBar/HeaderBar";
 import { Box, makeStyles } from "@material-ui/core";
 import NewPlaces from "./components/NewPlaces/NewPlaces";
 import AddNewFormDialog from "./shared/modals/AddNewFormModal/AddNewFormModal";
+
+import { viewMode } from "./components/layouts/HeaderBar/HeaderBar";
 
 const style = makeStyles((theme) => ({
   home: {
@@ -113,15 +115,26 @@ const addPlace = (e: any) => {
 
 function App() {
   const classes = style();
+  const [active , setActive] = useState(null)
+
+const activeView= (e:any) => {
+console.log ("actiiivee", e)
+setActive(e)
+}
+
 
   return (
     <Router>
       <div>
-        <HeaderBar></HeaderBar>
+        <HeaderBar onActiveView={activeView} ></HeaderBar>
         <Box className={classes.home}>
-          <AddNewFormDialog newPlace={addPlace}></AddNewFormDialog>
+          <Box>Travel Blog</Box>
+          {/* <AddNewFormDialog newPlace={addPlace}></AddNewFormDialog> */}
         </Box>
-        <NewPlaces placeMock={placesMock}></NewPlaces>
+        {/* <viewMode.Consumer> */}
+        <NewPlaces value={active} placeMock={placesMock}></NewPlaces>
+           {/* {value => ( )} */}
+        {/* </viewMode.Consumer> */}
       </div>
     </Router>
   );

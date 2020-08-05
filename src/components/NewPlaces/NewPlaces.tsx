@@ -21,6 +21,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddNewFormDialog from "../../shared/modals/AddNewFormModal/AddNewFormModal";
 import { placesMock } from "../../App";
 import Places from "../Places/Places";
+// import {viewMode} from "../layouts/HeaderBar/HeaderBar"
 
 const style = makeStyles((theme) => ({
   cardsContainer: {
@@ -89,8 +90,8 @@ const style = makeStyles((theme) => ({
   },
 }));
 
-const NewPlaces : React.FC<any>  = ({placeMock}) => {
-    // console.log("POROOP ", placeMock)
+const NewPlaces : React.FC<any>  = ({placeMock, value}) => {
+  console.log('NWEEW', value)
   const classes = style();
 
   const [filteredPlaces, setFilteredPlaces] = useState([]);
@@ -105,8 +106,8 @@ const NewPlaces : React.FC<any>  = ({placeMock}) => {
   }, [placeMock, filteredPlaces]);
 
   useEffect(() => {
-    setView("card");
-  }, []);
+    setView(value);
+  } );
 
   useEffect(() => {
     setFilteredPlaces(
@@ -123,20 +124,7 @@ const NewPlaces : React.FC<any>  = ({placeMock}) => {
   return (
     <>
       <Container maxWidth="lg" className={classes.cardsContainer}>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => changeView("card")}
-        >
-          Card View
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => changeView( "list")}
-        >
-          List View
-        </Button>
+        
         <div>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} md={4}>
@@ -161,7 +149,7 @@ const NewPlaces : React.FC<any>  = ({placeMock}) => {
               </div>
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
-              {/* <AddNewFormDialog></AddNewFormDialog> */}
+              <AddNewFormDialog></AddNewFormDialog>
             </Grid>
           </Grid>
         </div>

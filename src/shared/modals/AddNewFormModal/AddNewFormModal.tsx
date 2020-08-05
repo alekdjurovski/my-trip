@@ -42,7 +42,7 @@ const AddNewFormDialog: React.FC<any> = ({ newPlace }) => {
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleClickOpen}>
+      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Add New Place
       </Button>
       <Dialog
